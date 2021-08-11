@@ -4,10 +4,11 @@
       "noEmitOnError": true,
       "removeComments": false,
       "sourceMap": true,
-      "target": "ES6",
+      "target": "ES5",
       "outDir": "dist",
       "moduleResolution": "node",
       "declaration": true,
+      "module": "commonJS"
     },
     "include": [
       "src"

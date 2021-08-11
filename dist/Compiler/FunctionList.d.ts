@@ -23,35 +23,3 @@ export declare enum FunctionList {
     $username = "Returns the Username of User Id;$username or $username[userId]",
     $userTag = "Returns the Tag of User Id;$userTag or $userTag[userId]"
 }
-export interface ParamInformation {
-    name: string;
-    type: string;
-    description: string;
-    default?: string;
-    selections?: string[];
-}
-export interface FunctionListInformation {
-    description: string;
-    params: ParamInformation[];
-    return?: string | string[];
-}
-export declare namespace FunctionListDetailed {
-    const $addCmdReactions: FunctionListInformation;
-    const $addReactions: FunctionListInformation;
-    const $allMembersCount: FunctionListInformation;
-    const $authorAvatar: FunctionListInformation;
-    const $authorID: FunctionListInformation;
-    const $botPing: FunctionListInformation;
-    const $channelID: FunctionListInformation;
-    const $channelType: FunctionListInformation;
-    const $divide: FunctionListInformation;
-    const $membersCount: FunctionListInformation;
-    const $multi: FunctionListInformation;
-    const $ping: FunctionListInformation;
-    const $round: FunctionListInformation;
-    const $sub: FunctionListInformation;
-    const $sum: FunctionListInformation;
-    const $truncate: FunctionListInformation;
-    const $username: FunctionListInformation;
-    const $userTag: FunctionListInformation;
-}

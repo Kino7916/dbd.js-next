@@ -1,7 +1,14 @@
 import { Client, Channel, User, Guild, ShardingManager } from "discord.js";
 import { InstanceDataExtra } from "../Compiler/Build";
+export declare class Collection<K, V> extends Map {
+    static createInstance(array?: readonly (readonly [any, any])[]): Collection<any, any>;
+    add(...args: V[]): void;
+    push(...args: V[]): void;
+    array(): any[];
+}
 /** An Utility object that handles most annoying part's */
 declare namespace Util {
+    function requireModule(id: any): any;
     function escape(string: string): string;
     function unescape(string: string): string;
     function findInfoFromPackets(data: InstanceDataExtra, target: string): any;

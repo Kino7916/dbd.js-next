@@ -1,61 +1,20 @@
-import * as Discord from 'discord.js';
-class Config {
-    constructor() {
-        this._Commands = new Discord.Collection();
-        this._CommandPrefix = [];
-    }
-    get CaseSensitiveTrigger() {
-        return this._isSensitive;
-    }
-    set CaseSensitiveTrigger(value) {
-        this._isSensitive = value;
-    }
-    get Statuses() {
-        return this._Statuses;
-    }
-    set Statuses(value) {
-        if (this._firstModified)
-            return;
-        this._Statuses = value;
-    }
-    get Options() {
-        return this._Options;
-    }
-    set Options(value) {
-        if (this._firstModified)
-            return;
-        this._Options = value;
-    }
-    get ClientOptions() {
-        return this._ClientOptions;
-    }
-    set ClientOptions(value) {
-        if (this._firstModified)
-            return;
-        this._ClientOptions = value;
-    }
-    get Commands() {
-        return this._Commands;
-    }
-    set Commands(value) {
-        if (this._firstModified)
-            return;
-        this._Commands = value;
-    }
-    get CommandPrefix() {
-        return this._CommandPrefix;
-    }
-    set CommandPrefix(value) {
-        if (this._firstModified)
-            return;
-        this._CommandPrefix = value;
-    }
-    checkUpAsModified() {
-        if (this._firstModified)
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Util_1 = require("../Handlers/Util");
+var C;
+(function (C) {
+    C.Statuses = Util_1.Collection.createInstance();
+    C.Commands = Util_1.Collection.createInstance();
+    C.CommandPrefix = [];
+    C.CaseSensitiveTrigger = false;
+    var _firstModified = false;
+    function checkUpAsModified() {
+        if (_firstModified)
             return false;
-        this._firstModified = true;
-        return false;
+        _firstModified = true;
+        return true;
     }
-}
-export default new Config();
+    C.checkUpAsModified = checkUpAsModified;
+})(C || (C = {}));
+exports.default = C;
 //# sourceMappingURL=Config.js.map

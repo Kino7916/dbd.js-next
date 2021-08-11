@@ -1,1 +1,1 @@
-{"version":3,"file":"channelID.js","sourceRoot":"","sources":["../../src/Functions/channelID.ts"],"names":[],"mappings":"AAEA,SAAS,IAAI,CAAC,CAAe;IACzB,OAAO,CAAC,CAAC,IAAI,CAAC,OAAO,CAAC,EAAE,CAAC;AAC7B,CAAC;AAED,eAAe,IAAI,CAAC"}
+{"version":3,"file":"channelID.js","sourceRoot":"","sources":["../../src/Functions/channelID.ts"],"names":[],"mappings":";;AAEA,SAAS,IAAI,CAAC,CAAe;IACzB,OAAO,CAAC,CAAC,IAAI,CAAC,OAAO,CAAC,EAAE,CAAC;AAC7B,CAAC;AAED,kBAAe,IAAI,CAAC"}

@@ -1,9 +1,5 @@
 import * as Discord from 'discord.js';
-import { Alpha_Types } from './ALPHA_TYPES';
 declare type ClientEvents = "messageCreate" | "messageDelete" | "ready" | "guildMemberAdd" | "guildMemberRemove" | "interactionCreate";
-export declare class _CL_EXTENDED extends Discord.Client {
-    dbdjsProgram: Main;
-}
 export interface Command {
     name?: string;
     nonPrefix?: boolean;
@@ -16,9 +12,9 @@ export interface ClientOptions {
     danbotHostingKey: string;
     mobilePresence: boolean;
     pluginManager: any;
-    ignoreDMs: true | boolean;
-    ignoreMe: true | boolean;
-    ignoreBots: true | boolean;
+    ignoreDMs: boolean;
+    ignoreMe: boolean;
+    ignoreBots: boolean;
     intents: Discord.Intents;
     database?: any;
     prefix: string[];
@@ -39,8 +35,7 @@ export interface ActivityOptions {
     url?: string;
 }
 declare class Main {
-    client: _CL_EXTENDED;
-    static Types: typeof Alpha_Types;
+    client: any;
     database: any;
     private _ALPHA_IDS;
     constructor(clientOptions: ClientOptions);
@@ -59,7 +54,7 @@ declare class Main {
      * Starts the package and initialize discord bot with provided token
      * @param token - Discord Bot Token
      */
-    login(token: string): Promise<string>;
+    login(token: string): any;
     /**
      * Adds an activity to bot status
      */

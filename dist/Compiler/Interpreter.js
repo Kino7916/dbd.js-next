@@ -1,5 +1,7 @@
-import { FunctionList as FF } from './FunctionList';
-import { CompilerPlugin } from '../Handlers/Plugin';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var FunctionList_1 = require("./FunctionList");
+var Plugin_1 = require("../Handlers/Plugin");
 /**
  * Finds the closest function in string
  * @param name
@@ -7,8 +9,8 @@ import { CompilerPlugin } from '../Handlers/Plugin';
  */
 function closestMatch(name, ff) {
     return ff
-        .filter(f => name.slice(0, f.length).toLowerCase() === f.toLowerCase())
-        .sort((vodka, chacha) => chacha.length - vodka.length)[0] || null;
+        .filter(function (f) { return name.slice(0, f.length).toLowerCase() === f.toLowerCase(); })
+        .sort(function (vodka, chacha) { return chacha.length - vodka.length; })[0] || null;
 }
 /**
  * Predicates of incoming function
@@ -17,9 +19,9 @@ function closestMatch(name, ff) {
  */
 function predicateFunction(name, ff) {
     return ff
-        .filter(f => f.toLowerCase()
-        .includes(name.toLowerCase()))
-        .sort((vodka, chacha) => vodka.length - chacha.length)[0]
+        .filter(function (f) { return f.toLowerCase()
+        .includes(name.toLowerCase()); })
+        .sort(function (vodka, chacha) { return vodka.length - chacha.length; })[0]
         || null;
 }
 /**
@@ -29,14 +31,13 @@ function predicateFunction(name, ff) {
  */
 function getFunction(name, ff) {
     return ff
-        .filter(f => f.toLowerCase()
-        .includes(name.toLowerCase()))
-        .find((vodka) => vodka.length === name.length)
+        .filter(function (f) { return f.toLowerCase()
+        .includes(name.toLowerCase()); })
+        .find(function (vodka) { return vodka.length === name.length; })
         || null;
 }
 function FFToString() {
-    const ff = typeof FF;
-    return Object.keys(ff);
+    return Object.keys(FunctionList_1.FunctionList);
 }
 /**
  * Interprets code into AST
@@ -44,18 +45,19 @@ function FFToString() {
  * @returns
  */
 function Interpreter(code) {
-    const copyCode = code.slice(0);
-    let current = 0;
-    let char = copyCode[current];
-    const collectedFunctions = ['', ''];
-    let newCode = "";
+    var copyCode = code.slice(0);
+    var current = 0;
+    var char = copyCode[current];
+    var collectedFunctions = [['', '']];
+    var newCode = "";
     collectedFunctions.shift();
-    function getUnpack(dontCompile = false) {
+    function getUnpack(dontCompile) {
+        if (dontCompile === void 0) { dontCompile = false; }
         if (char !== "[")
             return null;
-        let stop = false;
-        let end = 0;
-        let data = "[";
+        var stop = false;
+        var end = 0;
+        var data = "[";
         unpacking: while (current < copyCode.length && !stop) {
             char = copyCode[current];
             current++;
@@ -75,7 +77,7 @@ function Interpreter(code) {
     parsing: while (current < copyCode.length) {
         char = copyCode[current];
         if (char === "$") {
-            let initialValue = '$';
+            var initialValue = '$';
             current++;
             char = copyCode[current];
             getFunc: while (current < copyCode.length) {
@@ -87,7 +89,7 @@ function Interpreter(code) {
                     char = copyCode[current];
                 else
                     char = "";
-                if (!predicateFunction(initialValue, FFToString().concat(CompilerPlugin.manager.array().map(f => f.identifier)))) {
+                if (!predicateFunction(initialValue, FFToString().concat(Plugin_1.CompilerPlugin.manager.array().map(function (f) { return f.identifier; })))) {
                     break getFunc;
                 }
             }
@@ -95,8 +97,8 @@ function Interpreter(code) {
                 initialValue += char;
             if (char !== "$")
                 current++;
-            const F = getFunction(closestMatch(initialValue, FFToString().concat(CompilerPlugin.manager.array().map(f => f.identifier))) || "", FFToString().concat(CompilerPlugin.manager.array().map(f => f.identifier)));
-            const body = [F, getUnpack()];
+            var F = getFunction(closestMatch(initialValue, FFToString().concat(Plugin_1.CompilerPlugin.manager.array().map(function (f) { return f.identifier; }))) || "", FFToString().concat(Plugin_1.CompilerPlugin.manager.array().map(function (f) { return f.identifier; })));
+            var body = [F, getUnpack()];
             if (F)
                 collectedFunctions.push(body);
             newCode += initialValue;
@@ -110,5 +112,5 @@ function Interpreter(code) {
     }
     return { code: newCode, functions: collectedFunctions };
 }
-module.exports = Interpreter;
+exports.default = Interpreter;
 //# sourceMappingURL=Interpreter.js.map

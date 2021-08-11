@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function Main(d) {
     if (d.data.interaction) {
         return Date.now() - d.data.interaction.createdTimestamp;
@@ -8,5 +10,5 @@ function Main(d) {
     else
         return '';
 }
-export default Main;
+exports.default = Main;
 //# sourceMappingURL=botPing.js.map

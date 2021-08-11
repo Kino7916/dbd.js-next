@@ -1,17 +1,19 @@
-import dbh from 'danbot-hosting';
-import { ShardingManager } from 'discord.js';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var danbot_hosting_1 = require("danbot-hosting");
+var discord_js_1 = require("discord.js");
 function connect(key, data) {
-    if (data instanceof ShardingManager) {
-        new dbh.ShardingClient(key, data);
+    if (data instanceof discord_js_1.ShardingManager) {
+        new danbot_hosting_1.default.ShardingClient(key, data);
     }
     else {
-        const dbhClient = new dbh.Client(key, data);
+        var dbhClient = new danbot_hosting_1.default.Client(key, data);
         dbhClient.autopost().then(function (err) {
             if (err)
-                return console.error(`\x1b[31mDANBOT HOSTING API\x1b[0m: Error encountered! \x1b[30m\x1b[4m\x1b[32m${err}\x1b[0m.`);
-            return console.info(`\x1b[32mDANBOT HOSTING API\x1b[0m: Successfull connection was made to REST.`);
+                return console.error("\u001B[31mDANBOT HOSTING API\u001B[0m: Error encountered! \u001B[30m\u001B[4m\u001B[32m" + err + "\u001B[0m.");
+            return console.info("\u001B[32mDANBOT HOSTING API\u001B[0m: Successfull connection was made to REST.");
         });
     }
 }
-export default connect;
+exports.default = connect;
 //# sourceMappingURL=DanbotHosting.js.map

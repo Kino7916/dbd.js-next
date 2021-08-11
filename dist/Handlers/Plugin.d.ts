@@ -14,6 +14,7 @@ export declare namespace CompilerPlugin {
     }
     /** A class Instance of CompilerPlugin for managing available Plugins*/
     export class PluginManager extends Map<string, PluginResolvable> {
+        static createInstance(array?: readonly (readonly [string, PluginResolvable])[]): PluginManager;
         add(...Plugins: PluginResolvable[]): void;
         push(...Plugins: PluginResolvable[]): void;
         array(): PluginResolvable[];
