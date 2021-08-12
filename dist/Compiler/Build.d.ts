@@ -17,7 +17,7 @@ export interface InstanceDataExtra {
     bot: any;
     returnCode: boolean;
     command: Command;
-    $TEMPO_VAR: any;
+    variables: any;
 }
 export interface InstanceData {
     start: number;
@@ -33,7 +33,7 @@ export interface InstanceData {
     sendOptions: MessageOptions;
     unpacked: string;
     embeds: MessageEmbed[];
-    errorNotClient: boolean;
+    errorWasClient: boolean;
     wasUnpacked: boolean;
     util: typeof util;
     useEphemeral: boolean;

@@ -1,4 +1,4 @@
-const dbd = require("./dist")
+const dbd = require("dbd.js");
 
 const bot = new dbd.Bot({
     intents: 32767,
@@ -7,23 +7,22 @@ const bot = new dbd.Bot({
     ignoreDMs: true,
     ignoreMe: true
 });
-
+/**
+ * Allows to add custom functions
+ */
 dbd.Plugin.manager.add({
-    identifier: "executionTime",
-    callback: function (d) {
-        return Date.now() - d.start;
+    identifier: "lerefAvatar",
+    callback: async function (d) {
+        const leref = await d.util.getUser(d.data.client, '608358453580136499');
+        return leref.displayAvatarURL({ size: 2048, dynamic: true })
     }
-})
-
-bot.enableEvent('messageCreate');
-bot.registerCommand(dbd.Types.Message, {
-    name: "ping",
-    code: "Pong!"
 });
 
-bot.registerCommand(dbd.Types.Message, {
-    name: "test",
-    code: "$pingms\n$executionTimems"
+bot.enableEvents('messageCreate');
+bot.registerCommands(dbd.Types.Message, {
+    name: "if",
+    code: "$onlyIf[$message==abc;Nope]\n$lerefAvatar"
 });
 
-bot.login('Token')
+
+bot.login('ODQ4MDc4NTA1ODk1OTE5NjQ2.YLHYqA.GJseUe-l29pRwhExRyLOH8lX05o')

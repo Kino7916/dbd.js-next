@@ -108,24 +108,38 @@ var Main = /** @class */ (function () {
      * Enable Discord.js event
      * @param event
      */
-    Main.prototype.enableEvent = function (event) {
-        if (!Events.includes(event))
-            throw new TypeError("Unsupported event of \"" + event + "\"!");
-        this.client.on(event, runEvent(event));
+    Main.prototype.enableEvents = function () {
+        var events = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            events[_i] = arguments[_i];
+        }
+        for (var _a = 0, events_1 = events; _a < events_1.length; _a++) {
+            var event_1 = events_1[_a];
+            if (!Events.includes(event_1))
+                throw new TypeError("Unsupported event of \"" + event_1 + "\"!");
+            this.client.on(event_1, runEvent(event_1));
+        }
     };
     /**
      * Register commands to an event
      * @param event
      * @param command
      */
-    Main.prototype.registerCommand = function (event, command) {
+    Main.prototype.registerCommands = function (event) {
+        var commands = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            commands[_i - 1] = arguments[_i];
+        }
         if (!Events.includes(event))
             throw new TypeError("Unsupported event of \"" + event + "\"!");
         if (!this.client.eventNames().includes(event))
             throw new Error("Event named \"" + event + "\" is not enabled, please enabled first!");
-        if (!("code" in command) || !command.code)
-            throw new Error("Command code is required!");
-        Config_1.default.Commands.set("C-" + event + "-" + Config_1.default.Commands.size.toString(), command);
+        for (var _a = 0, commands_1 = commands; _a < commands_1.length; _a++) {
+            var command = commands_1[_a];
+            if (!("code" in command) || !command.code)
+                throw new Error("Command code is required!");
+            Config_1.default.Commands.set("C-" + event + "-" + Config_1.default.Commands.size.toString(), command);
+        }
     };
     /**
      * Starts the package and initialize discord bot with provided token
@@ -174,8 +188,8 @@ var Main = /** @class */ (function () {
                                 error = new Error("");
                         }
                         body = __assign({ embeds: output.leftover.embeds, ephemeral: output.leftover.useEphemeral }, output.leftover.sendOptions);
-                        if (output.result /* || error.content*/)
-                            body.content = output.result /* || error.content*/;
+                        if (error.message || output.result)
+                            body.content = error.message || output.result;
                         if (output.leftover.data.interaction)
                             return [2 /*return*/, output.leftover.data.interaction.reply(body)];
                         return [2 /*return*/, resolveMessage_1.default(output.leftover.data.channel, body)];
@@ -209,7 +223,7 @@ var Main = /** @class */ (function () {
         var command = this._ALPHA_IDS.get(commandId);
         if (!command)
             throw new Error("Invalid command Id of \"" + commandId + "\"!");
-        this.registerCommand(eventType, command);
+        this.registerCommands(eventType, command);
         // Clearing up memory usages / cache
         this._ALPHA_IDS.delete(commandId);
     };

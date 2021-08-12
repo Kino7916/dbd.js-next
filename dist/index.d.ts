@@ -3,4 +3,5 @@ import Bot from './Main/Main';
 import { CompilerPlugin as Plugin } from "./Handlers/Plugin";
 import Config from "./Main/Config";
 import { Alpha_Types as Types } from "./Main/ALPHA_TYPES";
-export { Util, Bot, Plugin, Types, Config };
+import Events from "./Handlers/Events";
+export { Util, Bot, Plugin, Types, Config, Events };

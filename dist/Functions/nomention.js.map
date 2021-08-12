@@ -1,0 +1,1 @@
+{"version":3,"file":"nomention.js","sourceRoot":"","sources":["../../src/Functions/nomention.ts"],"names":[],"mappings":";;AAEA,SAAS,IAAI,CAAC,CAAe;IACzB,CAAC,CAAC,WAAW,CAAC,eAAe,GAAG;QAC5B,KAAK,EAAE,EAAE;QACT,KAAK,EAAE,EAAE;QACT,WAAW,EAAE,KAAK;KACrB,CAAA;IACD,OAAO,EAAE,CAAC;AACd,CAAC;AAED,kBAAe,IAAI,CAAC"}

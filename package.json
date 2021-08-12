@@ -1,8 +1,8 @@
 {
-  "name": "herewegoagain",
-  "version": "1.0.0",
+  "name": "dbd.js",
+  "version": "4.0.0-pre-release",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "init": "ts init"
@@ -11,10 +11,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^16.4.3",
     "axios": "^0.21.1",
+    "discord.js": "^13.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.6.0",
     "danbot-hosting": "^0.1.6",
-    "discord.js": "^13.0.1",
     "typescript": "^4.3.5"
   }
 }

@@ -11,7 +11,6 @@ export interface ClientOptions {
     shardCount: number;
     danbotHostingKey: string;
     mobilePresence: boolean;
-    pluginManager: any;
     ignoreDMs: boolean;
     ignoreMe: boolean;
     ignoreBots: boolean;
@@ -43,13 +42,13 @@ declare class Main {
      * Enable Discord.js event
      * @param event
      */
-    enableEvent(event: ClientEvents): void;
+    enableEvents(...events: ClientEvents[]): void;
     /**
      * Register commands to an event
      * @param event
      * @param command
      */
-    registerCommand(event: ClientEvents, command: Command): void;
+    registerCommands(event: ClientEvents, ...commands: Command[]): void;
     /**
      * Starts the package and initialize discord bot with provided token
      * @param token - Discord Bot Token

@@ -95,7 +95,7 @@ function build(d, _) {
                                             InstanceData.unpacked = "";
                                             InstanceData.wasUnpacked = false;
                                             if (InstanceData.errorMessage instanceof Error) {
-                                                if (!InstanceData.errorNotClient)
+                                                if (!InstanceData.errorWasClient)
                                                     InstanceData.errorMessage.message = "```js\n" + F + " Compiler ran to " + InstanceData.errorMessage.stack.replace("Script._compile", "ScriptCodeCompiler") + "```";
                                                 return [2 /*return*/, "break"];
                                             }
@@ -136,7 +136,7 @@ function build(d, _) {
                         suppressedMessage: ["", {}],
                         splits: [],
                         code: "",
-                        data: __assign({ returnCode: false, $TEMPO_VAR: {} }, _),
+                        data: __assign({ returnCode: false, variables: {} }, _),
                         strictErrors: false,
                         sendOptions: {},
                         unpacked: "",
@@ -168,13 +168,13 @@ function build(d, _) {
                             if (this.ignoreErrors)
                                 return;
                             if (onlyIfStrict && this.strictErrors) {
-                                this.errorMessage = error;
+                                this.errorMessage = errorMessage;
                                 return;
                             }
-                            this.errorMessage = error;
+                            this.errorMessage = errorMessage;
                         },
                         util: Util_1.default,
-                        errorNotClient: false,
+                        errorWasClient: false,
                         useEphemeral: false
                     };
                     _a = {};
