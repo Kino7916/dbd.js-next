@@ -25,4 +25,4 @@ bot.registerCommands(dbd.Types.Message, {
 });
 
 
-bot.login('ODQ4MDc4NTA1ODk1OTE5NjQ2.YLHYqA.GJseUe-l29pRwhExRyLOH8lX05o')
+bot.login('Token')

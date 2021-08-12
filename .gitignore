@@ -2,5 +2,3 @@ node_modules
 src
 FunctionListForHelp.ts
 .gitignore
-BotTest.js
-shardingTest.js
