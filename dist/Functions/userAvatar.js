@@ -37,25 +37,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 function Main(d) {
-    var _a;
+    var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
         var Id, User;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        return __generator(this, function (_c) {
+            switch (_c.label) {
                 case 0:
                     if (!d.hasUsage()) {
-                        return [2 /*return*/, (_a = d.data.author) === null || _a === void 0 ? void 0 : _a.tag];
+                        return [2 /*return*/, (_b = (_a = d.data.author) === null || _a === void 0 ? void 0 : _a.displayAvatarURL) === null || _b === void 0 ? void 0 : _b.call(_a, { size: 2048, dynamic: true })];
                     }
                     Id = "" + BigInt(d.unpack(d.unpacked).inside);
                     return [4 /*yield*/, d.util.getUser(d.data.client, Id)];
                 case 1:
-                    User = _b.sent();
+                    User = _c.sent();
                     if (!User)
                         return [2 /*return*/, d.error('Invalid User of User Id!')];
-                    return [2 /*return*/, User.tag];
+                    return [2 /*return*/, User.displayAvatarURL({ size: 2048, dynamic: true })];
             }
         });
     });
 }
 exports.default = Main;
-//# sourceMappingURL=userTag.js.map
+//# sourceMappingURL=userAvatar.js.map

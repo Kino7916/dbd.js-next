@@ -37,18 +37,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 function Main(d) {
+    var _a;
     return __awaiter(this, void 0, void 0, function () {
         var Id, User;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     if (!d.hasUsage()) {
-                        return [2 /*return*/, d.data.author.username];
+                        return [2 /*return*/, (_a = d.data.author) === null || _a === void 0 ? void 0 : _a.username];
                     }
                     Id = "" + BigInt(d.unpack(d.unpacked).inside);
                     return [4 /*yield*/, d.util.getUser(d.data.client, Id)];
                 case 1:
-                    User = _a.sent();
+                    User = _b.sent();
                     if (!User)
                         return [2 /*return*/, d.error('Invalid User of User Id!')];
                     return [2 /*return*/, User.username];

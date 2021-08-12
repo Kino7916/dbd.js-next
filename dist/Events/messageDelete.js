@@ -4,6 +4,8 @@ var Main_1 = require("../Main/Main");
 var Config_1 = require("../Main/Config");
 function Main(message) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
+    if (!message)
+        return;
     if (Config_1.default.Options.ignoreDMs && ((_a = message === null || message === void 0 ? void 0 : message.channel) === null || _a === void 0 ? void 0 : _a.type) === "DM")
         return;
     if (Config_1.default.Options.ignoreBots && ((_b = message === null || message === void 0 ? void 0 : message.author) === null || _b === void 0 ? void 0 : _b.bot) === true) {
