@@ -1,6 +1,8 @@
-import { MessageEmbed, MessageOptions, Message, Interaction, User, GuildMember, Guild, TextChannel, DMChannel, Client } from 'discord.js';
+import { MessageEmbed, MessageOptions, Message, ButtonInteraction, CommandInteraction, MessageComponentInteraction, SelectMenuInteraction, User, GuildMember, Guild, TextChannel, DMChannel, Client, NewsChannel } from 'discord.js';
+import { InterpreterResult } from './Interpreter';
 import util from '../Handlers/Util';
 import { Command } from '../Main/Main';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 export interface UnpackInformation {
     total: string;
     inside: string;
@@ -11,8 +13,8 @@ export interface InstanceDataExtra {
     member?: GuildMember;
     message?: Message;
     guild?: Guild;
-    channel?: DMChannel | TextChannel;
-    interaction?: Interaction;
+    channel?: DMChannel | TextChannel | NewsChannel;
+    interaction?: ButtonInteraction | CommandInteraction | SelectMenuInteraction | MessageComponentInteraction;
     client: Client;
     bot: any;
     returnCode: boolean;
@@ -21,7 +23,10 @@ export interface InstanceDataExtra {
 }
 export interface InstanceData {
     start: number;
-    httpResult: any;
+    httpResult: AxiosResponse;
+    onlyEdit?: boolean;
+    editMessage?: Message;
+    axiosConfig: AxiosRequestConfig;
     ignoreErrors: boolean;
     errorMessage: Error | null;
     suppressed: Error | null;
@@ -39,7 +44,12 @@ export interface InstanceData {
     useEphemeral: boolean;
     unpack: (string: string) => UnpackInformation;
     createEmbed: () => void;
-    getEmbed: () => MessageEmbed;
+    getEmbed: (index?: number) => MessageEmbed;
     hasUsage: () => boolean;
     error: (error: string, onlyIfStrict?: boolean) => void;
 }
+declare function build(d: InterpreterResult, _: any): Promise<{
+    result: any;
+    leftover: InstanceData;
+}>;
+export default build;

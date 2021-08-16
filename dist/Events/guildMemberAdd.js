@@ -1,18 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Main_1 = require("../Main/Main");
-var Config_1 = require("../Main/Config");
+const Main_1 = require("../Main/Main");
+const Config_1 = require("../Main/Config");
 function Main(member) {
-    var commands = Array.from(Config_1.default.Commands.entries()).filter(function (_a) {
-        var key = _a[0], _ = _a[1];
-        return key.startsWith('C-guildMemberAdd');
-    }).map(function (f) { return f[1]; });
-    var client = member.client;
-    for (var _i = 0, commands_1 = commands; _i < commands_1.length; _i++) {
-        var command = commands_1[_i];
+    const commands = Array.from(Config_1.default.Commands.entries()).filter(([key, _]) => key.startsWith('C-guildMemberAdd')).map(f => f[1]);
+    const client = member.client;
+    for (const command of commands) {
         Main_1.default._compile(command, {
             bot: client.dbdjsProgram,
-            client: client,
+            client,
             member: member,
             guild: member.guild,
             author: member.user

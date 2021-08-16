@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
+    "dbdts.db": "^3.1.0",
     "discord.js": "^13.0.1"
   },
   "devDependencies": {

@@ -18,6 +18,7 @@ export interface ClientOptions {
     database?: any;
     prefix: string[];
     cache: Discord.CacheFactory;
+    reverseReading: boolean;
 }
 export interface ActivityOptions {
     /** The activity to display in User Presence */
@@ -58,7 +59,10 @@ declare class Main {
      * Adds an activity to bot status
      */
     addActivity(...options: ActivityOptions[]): void;
-    static _compile(command: Command, data: any): Promise<any>;
+    static _compile(command: Command, data: any): Promise<void | TypeError | Discord.Message | {
+        result: any;
+        leftover: import("../Compiler/Build").InstanceData;
+    }>;
     /**
      * Creates a command to list of IDs
      * @param command

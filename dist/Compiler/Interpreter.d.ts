@@ -8,5 +8,5 @@ declare type IntPushType = [string, any];
  * @param code
  * @returns
  */
-declare function Interpreter(code: string): InterpreterResult;
+declare function Interpreter(code: string, reverse?: boolean): InterpreterResult;
 export default Interpreter;

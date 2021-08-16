@@ -4,11 +4,12 @@
       "noEmitOnError": true,
       "removeComments": false,
       "sourceMap": true,
-      "target": "ES5",
+      "target": "ES2020",
       "outDir": "dist",
       "moduleResolution": "node",
       "declaration": true,
-      "module": "commonJS"
+      "module": "commonJS",
+      "lib": ["ES2021"]
     },
     "include": [
       "src"

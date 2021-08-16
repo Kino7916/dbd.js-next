@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Util_1 = require("../Handlers/Util");
+const Util_1 = require("../Handlers/Util");
 var C;
 (function (C) {
     C.Statuses = Util_1.Collection.createInstance();

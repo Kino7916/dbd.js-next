@@ -5,7 +5,8 @@ const bot = new dbd.Bot({
     prefix: ["!", "?"],
     ignoreBots: true,
     ignoreDMs: true,
-    ignoreMe: true
+    ignoreMe: true,
+    reverseReading: true
 });
 /**
  * Allows to add custom functions
@@ -21,7 +22,11 @@ dbd.Plugin.manager.add({
 bot.enableEvents('messageCreate');
 bot.registerCommands(dbd.Types.Message, {
     name: "if",
-    code: "$onlyIf[$message==abc;Nope]\n$lerefAvatar"
+    code: `$title[Title]
+    $description[HI]
+    $addField[Hi;Hello]
+    $addField[Hello;Hi]
+    $color[WHITE]`
 });
 
 
