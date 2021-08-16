@@ -13,9 +13,9 @@ This package allows you to make your dreams features for your Discord Bot to be 
 We serve developers ready-to-use Functions with a minimum amount of resources, it's framework [discord.js](https://github.com/discordjs/discord.js) is known well and it's programming implementations are handled by us.
 
 # Changelog
-- Added `Events` class
-- More *Built-in* Functions
-- More Supported Events
+- Added Embeds Functions
+- Added Interaction support Functions
+- Added `reverseReading` for Bot Options
 
 # Examples
 As we said, the hard way are handled by us, and you do the easy way.
@@ -107,6 +107,7 @@ An class that creates a discord.js Client
     - `intents` - Discord Intents to access and retrieve data from Discord Gateway
     - `prefix` - Identifiers for command triggers at the beginning of message content
     - `cache` - Manages the cache by `discord.js` framework
+    - `reverseReading` - Changes interpreter reading principles, `from Top to Bottom` reading to `from Bottom to Top`
 ## Bot.enableEvents
 Listens and register Events to Client
 - `...Events` - Events that are currently available for use
