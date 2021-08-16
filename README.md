@@ -16,6 +16,9 @@ We serve developers ready-to-use Functions with a minimum amount of resources, i
 - Added Embeds Functions
 - Added Interaction support Functions
 - Added `reverseReading` for Bot Options
+- Identifier changes for Bot Functions,
+    - `enableEvent` to `enableEvents`
+    - `registerCommand` to `registerCommands`
 
 # Examples
 As we said, the hard way are handled by us, and you do the easy way.
@@ -63,7 +66,7 @@ const bot = new dbd.Bot({
 bot.enableEvents('messageCreate');
 // After enabling events,
 // We register commands for them to execute when the event is emitted
-bot.registerCommand(
+bot.registerCommands(
     // We specificy the event
     'messageCreate',
     // And we add a command to run
