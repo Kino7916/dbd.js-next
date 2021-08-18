@@ -1,11 +1,6 @@
 import * as Discord from 'discord.js';
-declare type ClientEvents = "messageCreate" | "messageDelete" | "ready" | "guildMemberAdd" | "guildMemberRemove" | "interactionCreate";
-export interface Command {
-    name?: string;
-    nonPrefix?: boolean;
-    aliases?: string[] | string;
-    code: string;
-}
+import { Type as ClientEvents } from './ALPHA_TYPES';
+import { Command, StatusManager, CommandManager } from '../Handlers/Managers';
 export interface ClientOptions {
     useInternalSharding: boolean;
     shardCount: number;
@@ -38,6 +33,8 @@ declare class Main {
     client: any;
     database: any;
     private _ALPHA_IDS;
+    commands: CommandManager;
+    status: StatusManager;
     constructor(clientOptions: ClientOptions);
     /**
      * Enable Discord.js event

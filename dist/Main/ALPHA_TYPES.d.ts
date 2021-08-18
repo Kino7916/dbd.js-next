@@ -6,3 +6,4 @@ export declare enum Alpha_Types {
     Ready = "ready",
     InteractionCreate = "interactionCreate"
 }
+export declare type Type = "messageCreate" | "guildMemberAdd" | "guildMemberRemove" | "messageDelete" | "ready" | "interactionCreate";

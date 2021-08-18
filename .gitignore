@@ -3,3 +3,4 @@ src
 FunctionListForHelp.ts
 .gitignore
 findMissing.js
+tsconfig.json

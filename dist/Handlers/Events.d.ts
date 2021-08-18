@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import EventEmitter = require("events");
-import { Command } from "../Main/Main";
+import { Command } from './Managers';
 import { Collection } from "./Util";
 declare class Events extends EventEmitter {
     commands: Collection<string | symbol, Array<Command>>;

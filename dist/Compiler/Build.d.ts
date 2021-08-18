@@ -1,7 +1,7 @@
 import { MessageEmbed, MessageOptions, Message, ButtonInteraction, CommandInteraction, MessageComponentInteraction, SelectMenuInteraction, User, GuildMember, Guild, TextChannel, DMChannel, Client, NewsChannel } from 'discord.js';
 import { InterpreterResult } from './Interpreter';
 import util from '../Handlers/Util';
-import { Command } from '../Main/Main';
+import { Command } from '../Handlers/Managers';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 export interface UnpackInformation {
     total: string;

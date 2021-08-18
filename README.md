@@ -13,12 +13,10 @@ This package allows you to make your dreams features for your Discord Bot to be 
 We serve developers ready-to-use Functions with a minimum amount of resources, it's framework [discord.js](https://github.com/discordjs/discord.js) is known well and it's programming implementations are handled by us.
 
 # Changelog
-- Added Embeds Functions
-- Added Interaction support Functions
-- Added `reverseReading` for Bot Options
-- Identifier changes for Bot Functions,
-    - `enableEvent` to `enableEvents`
-    - `registerCommand` to `registerCommands`
+- Added Database Options
+- Added Interactor for dbd.ts APIDatabase
+- Added `LoadCommands`
+
 
 # Examples
 As we said, the hard way are handled by us, and you do the easy way.

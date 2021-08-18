@@ -8,6 +8,7 @@ const bot = new dbd.Bot({
     ignoreMe: true,
     reverseReading: true
 });
+
 /**
  * Allows to add custom functions
  */

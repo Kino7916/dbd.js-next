@@ -9,6 +9,7 @@ const Config_1 = require("./Config");
 const Interpreter_1 = require("../Compiler/Interpreter");
 const Util_1 = require("../Handlers/Util");
 const Build_1 = require("../Compiler/Build");
+const Managers_1 = require("../Handlers/Managers");
 const requireModule = Util_1.default.requireModule;
 // Alpha version
 // just in case if they're lazy
@@ -18,7 +19,9 @@ function runEvent(event) {
 }
 class Main {
     constructor(clientOptions) {
-        this.database = clientOptions.database;
+        this.commands = Managers_1.Managers.Command;
+        this.status = Managers_1.Managers.Status;
+        this.database = clientOptions.database || null;
         this._ALPHA_IDS = new Discord.Collection();
         Config_1.default.Options = clientOptions;
         Config_1.default.ClientOptions = {

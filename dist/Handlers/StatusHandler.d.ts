@@ -1,5 +1,6 @@
 import { PresenceStatusData, ActivityType } from "discord.js";
-import Main, { Command } from '../Main/Main';
+import { Command } from "./Managers";
+import Main from '../Main/Main';
 import { Collection } from "./Util";
 export interface Status {
     name: string;

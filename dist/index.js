@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Events = exports.Config = exports.Types = exports.Plugin = exports.Bot = exports.Util = void 0;
+exports.LoadCommands = exports.StatusManager = exports.CommandManager = exports.RemoteDatabaseInteractor = exports.Events = exports.Config = exports.Types = exports.Plugin = exports.Bot = exports.Util = void 0;
 const Util_1 = require("./Handlers/Util");
 exports.Util = Util_1.default;
 const Main_1 = require("./Main/Main");
@@ -13,4 +13,13 @@ const ALPHA_TYPES_1 = require("./Main/ALPHA_TYPES");
 Object.defineProperty(exports, "Types", { enumerable: true, get: function () { return ALPHA_TYPES_1.Alpha_Types; } });
 const Events_1 = require("./Handlers/Events");
 exports.Events = Events_1.default;
+const Database_1 = require("./Handlers/Database");
+Object.defineProperty(exports, "RemoteDatabaseInteractor", { enumerable: true, get: function () { return Database_1.RemoteDatabaseInteractor; } });
+const Managers_1 = require("./Handlers/Managers");
+const CommandManager = Managers_1.Managers.Command;
+exports.CommandManager = CommandManager;
+const StatusManager = Managers_1.Managers.Status;
+exports.StatusManager = StatusManager;
+const LoadCommands = CommandManager.load;
+exports.LoadCommands = LoadCommands;
 //# sourceMappingURL=index.js.map

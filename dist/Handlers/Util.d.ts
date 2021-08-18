@@ -9,7 +9,7 @@ export declare class Collection<K, V> extends Map {
 /** An Utility object that handles most annoying part's */
 declare namespace Util {
     function removeItemFromArray<T>(arr: Array<T>, value: T): Array<T>;
-    function requireModule(id: any): any;
+    function requireModule(id: string): any;
     function escape(string: string): string;
     function unescape(string: string): string;
     function findInfoFromPackets(data: InstanceDataExtra, target: string): any;

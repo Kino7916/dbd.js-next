@@ -1,5 +1,6 @@
 import { ClientOptions as DiscordClientOptions } from 'discord.js';
-import { Command, ClientOptions } from './Main';
+import { ClientOptions } from './Main';
+import { Command } from '../Handlers/Managers';
 import { Status } from '../Handlers/StatusHandler';
 import { Collection } from '../Handlers/Util';
 declare namespace C {
