@@ -50,4 +50,4 @@ bot.registerCommands(dbd.Types.Message, {
 });
 
 
-bot.login('ODQ4MDc4NTA1ODk1OTE5NjQ2.YLHYqA.-ptf5eWORxVC9gSNvS033df3KwU')
+bot.login('Token')
