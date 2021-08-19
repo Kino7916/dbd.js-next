@@ -10,6 +10,7 @@ const Interpreter_1 = require("../Compiler/Interpreter");
 const Util_1 = require("../Handlers/Util");
 const Build_1 = require("../Compiler/Build");
 const Managers_1 = require("../Handlers/Managers");
+const __1 = require("..");
 const requireModule = Util_1.default.requireModule;
 // Alpha version
 // just in case if they're lazy
@@ -22,7 +23,6 @@ class Main {
         this.commands = Managers_1.Managers.Command;
         this.status = Managers_1.Managers.Status;
         this.database = clientOptions.database || null;
-        this._ALPHA_IDS = new Discord.Collection();
         Config_1.default.Options = clientOptions;
         Config_1.default.ClientOptions = {
             ws: {
@@ -50,10 +50,7 @@ class Main {
         this.client.dbdjsProgram = this;
         this.client.once("ready", function (client) {
             StatusHandler_1.default(Config_1.default.Statuses, client.dbdjsProgram);
-            if (!client.shard) {
-                console.log(`Connected as ${client.user.username}`);
-            }
-            if (clientOptions.danbotHostingKey) {
+            if (clientOptions.danbotHostingKey && !client.shard) {
                 DanbotHosting_1.default(clientOptions.danbotHostingKey, client);
             }
         });
@@ -63,7 +60,8 @@ class Main {
      * @param event
      */
     enableEvents(...events) {
-        for (const event of events) {
+        const evs = Util_1.default.iterateArgs(events);
+        for (const event of evs) {
             if (!Events.includes(event))
                 throw new TypeError(`Unsupported event of "${event}"!`);
             this.client.on(event, runEvent(event));
@@ -79,7 +77,8 @@ class Main {
             throw new TypeError(`Unsupported event of "${event}"!`);
         if (!this.client.eventNames().includes(event))
             throw new Error(`Event named "${event}" is not enabled, please enabled first!`);
-        for (const command of commands) {
+        const cmds = Util_1.default.iterateArgs(commands);
+        for (const command of cmds) {
             if (!("code" in command) || !command.code)
                 throw new Error("Command code is required!");
             Config_1.default.Commands.set("C-" + event + "-" + Config_1.default.Commands.size.toString(), command);
@@ -96,7 +95,8 @@ class Main {
      * Adds an activity to bot status
      */
     addActivity(...options) {
-        for (const activity of options) {
+        const opts = Util_1.default.iterateArgs(options);
+        for (const activity of opts) {
             Config_1.default.Statuses.set("ST-" + Config_1.default.Statuses.size.toString(), {
                 name: activity.activity,
                 type: activity.type,
@@ -108,6 +108,7 @@ class Main {
         }
     }
     static async _compile(command, data) {
+        __1.Debugger.log(`Task Compiler Running`, __1.Debugger.FLAGS.INFO);
         const output = await Build_1.default(Interpreter_1.default(command.code, Config_1.default.Options.reverseReading), { command, ...data });
         let error = {};
         if (data.returnCode)
@@ -131,36 +132,6 @@ class Main {
         if (output.leftover.data.interaction)
             return output.leftover.data.interaction.reply(body);
         return resolveMessage_1.default(output.leftover.data.channel, body, output.leftover);
-    }
-    // Alpha functions, just for lazys
-    /**
-     * Creates a command to list of IDs
-     * @param command
-     * @deprecated
-     * @returns
-     */
-    createCommand(command) {
-        const Id = 1000000 * Math.random();
-        if (!("code" in command) || !command.code)
-            throw new Error("Command code is required!");
-        this._ALPHA_IDS.set(Id, command);
-        return Id;
-    }
-    /**
-     * Assigns command Id to Callback Events
-     * @param eventType
-     * @param commandId
-     * @deprecated
-     */
-    assignType(eventType, commandId) {
-        if (!Events.includes(eventType))
-            throw new Error(`Invalid event type of "${eventType}"!`);
-        const command = this._ALPHA_IDS.get(commandId);
-        if (!command)
-            throw new Error(`Invalid command Id of "${commandId}"!`);
-        this.registerCommands(eventType, command);
-        // Clearing up memory usages / cache
-        this._ALPHA_IDS.delete(commandId);
     }
 }
 exports.default = Main;

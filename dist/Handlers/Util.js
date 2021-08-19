@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Collection = void 0;
 const discord_js_1 = require("discord.js");
+const Debugger_1 = require("./Debugger");
 class Collection extends Map {
     static createInstance(array) {
         var inst = new Map(array);
@@ -24,6 +25,19 @@ exports.Collection = Collection;
 /** An Utility object that handles most annoying part's */
 var Util;
 (function (Util) {
+    function iterateArgs(args) {
+        let iteratedArgs = [];
+        for (const v of args) {
+            if (Array.isArray(v)) {
+                iteratedArgs = iteratedArgs.concat(v);
+            }
+            else {
+                iteratedArgs.push(v);
+            }
+        }
+        return iteratedArgs;
+    }
+    Util.iterateArgs = iterateArgs;
     function removeItemFromArray(arr, value) {
         const index = arr.indexOf(value);
         if (index > -1) {
@@ -173,12 +187,12 @@ var Util;
     function createShardingManager(file, token, dbhKey) {
         const manager = new discord_js_1.ShardingManager(file, { token });
         manager.on("shardCreate", (shard) => {
-            shard.on("death", () => console.warn(`PID ${shard.process.pid} Shard ${shard.id}: Event Death`));
-            shard.on("error", (error) => console.error(`PID ${shard.process.pid} Shard ${shard.id}: ${error.stack}`));
-            shard.on("reconnecting", () => console.log(`PID ${shard.process.pid} Shard ${shard.id}: Reconnecting`));
-            shard.on("ready", () => console.log(`PID ${shard.process.pid} Shard ${shard.id}: Ready`));
-            shard.on("disconnect", () => console.warn(`PID ${shard.process.pid} Shard ${shard.id}: Disconnected`));
-            shard.once("spawn", () => console.log(`PID ${shard.process.pid} Shard ${shard.id}: Spawned`));
+            shard.on("death", () => Debugger_1.default.log(`Shard ${shard.id}: Event Death`, Debugger_1.default.FLAGS.INFO));
+            shard.on("error", (error) => Debugger_1.default.log(`Shard ${shard.id}: ${error.stack}`, Debugger_1.default.FLAGS.ERROR));
+            shard.on("reconnecting", () => Debugger_1.default.log(`Shard ${shard.id}: Reconnecting`, Debugger_1.default.FLAGS.INFO));
+            shard.on("ready", () => Debugger_1.default.log(`Shard ${shard.id}: Ready`, Debugger_1.default.FLAGS.INFO));
+            shard.on("disconnect", () => Debugger_1.default.log(`Shard ${shard.id}: Disconnected`, Debugger_1.default.FLAGS.WARN));
+            shard.once("spawn", () => Debugger_1.default.log(`Shard ${shard.id}: Spawned`, Debugger_1.default.FLAGS.INFO));
         });
         if (typeof dbhKey === "string" && dbhKey.length) {
             const handler = require("./danbotHosting");

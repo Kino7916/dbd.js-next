@@ -1,9 +1,10 @@
-import { Type as Events } from "../Main/ALPHA_TYPES";
+import { EventResolvable, Events, Alpha_Types as Types } from "../Main/ALPHA_TYPES";
 import { ActivityOptions } from "../Main/Main";
+declare const Events: Types[];
 export interface Command {
     name?: string;
-    type?: Events;
-    event?: Events;
+    type?: EventResolvable<Events>;
+    event?: EventResolvable<Events>;
     aliases?: string | string[];
     nonPrefix?: boolean;
     code: string;
@@ -19,3 +20,4 @@ export declare namespace Managers {
     const Command: CommandManager;
     const Status: StatusManager;
 }
+export {};

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CompilerPlugin = void 0;
 const FunctionList_1 = require("../Compiler/FunctionList");
+const Util_1 = require("./Util");
 var CompilerPlugin;
 (function (CompilerPlugin) {
     /** A Rule that allows manager to overwrites an existing built-in function if plugin's identifier are equal */
@@ -15,7 +16,8 @@ var CompilerPlugin;
             return inst;
         }
         add(...Plugins) {
-            for (const plugin of Plugins) {
+            const args = Util_1.default.iterateArgs(Plugins);
+            for (const plugin of args) {
                 if (!CompilerPlugin.overwriteNative && FunctionList_1.FunctionList["$" + plugin.identifier]) {
                     console.error('Overwriting Built-In Functions are not allowed, you can change this rule by changing \'CompilerPlugin.overwriteNative\' and set as \'true\'');
                     break;
@@ -26,7 +28,8 @@ var CompilerPlugin;
             ;
         }
         push(...Plugins) {
-            for (const plugin of Plugins) {
+            const args = Util_1.default.iterateArgs(Plugins);
+            for (const plugin of args) {
                 if (!CompilerPlugin.overwriteNative && FunctionList_1.FunctionList["$" + plugin.identifier]) {
                     console.error('Overwriting Built-In Functions are not allowed, you can change this rule by changing \'CompilerPlugin.overwriteNative\' and set as \'true\'');
                     break;

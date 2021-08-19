@@ -8,6 +8,7 @@ export declare class Collection<K, V> extends Map {
 }
 /** An Utility object that handles most annoying part's */
 declare namespace Util {
+    function iterateArgs<T>(args: T[]): T[];
     function removeItemFromArray<T>(arr: Array<T>, value: T): Array<T>;
     function requireModule(id: string): any;
     function escape(string: string): string;

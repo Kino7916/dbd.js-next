@@ -13,9 +13,9 @@ This package allows you to make your dreams features for your Discord Bot to be 
 We serve developers ready-to-use Functions with a minimum amount of resources, it's framework [discord.js](https://github.com/discordjs/discord.js) is known well and it's programming implementations are handled by us.
 
 # Changelog
-- Added Database Options
-- Added Interactor for dbd.ts APIDatabase
-- Added `LoadCommands`
+- Added `Debugger`
+- Added `guildCreate` and `guildDelete` event
+- Allows array arguments as resolvables
 
 
 # Examples
