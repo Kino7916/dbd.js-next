@@ -1,6 +1,7 @@
 import * as Discord from 'discord.js';
 import { Events as ClientEvents, EventResolvable } from './ALPHA_TYPES';
 import { Command, StatusManager, CommandManager } from '../Handlers/Managers';
+import { Database } from '../Handlers/Database';
 export interface ClientOptions {
     useInternalSharding: boolean;
     shardCount: number;
@@ -10,7 +11,7 @@ export interface ClientOptions {
     ignoreMe: boolean;
     ignoreBots: boolean;
     intents: Discord.Intents;
-    database?: any;
+    database?: Database;
     prefix: string[];
     cache: Discord.CacheFactory;
     reverseReading: boolean;
@@ -55,9 +56,9 @@ declare class Main {
      * Adds an activity to bot status
      */
     addActivity(...options: ActivityOptions[]): void;
-    static _compile(command: Command, data: any): Promise<void | TypeError | {
+    static _compile(command: Command, data: any): Promise<void | TypeError | Discord.Message | {
         result: any;
         leftover: import("../Compiler/Build").InstanceData;
-    } | Discord.Message>;
+    }>;
 }
 export default Main;

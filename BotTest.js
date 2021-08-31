@@ -1,4 +1,8 @@
 const dbd = require("dbd.js");
+const dbdts = require("dbdts.db");
+
+const db = new dbdts.Database({ path: ".sqlite"});
+const database = new dbd.SQLiteDatabase(db);
 
 const bot = new dbd.Bot({
     intents: 32767,
@@ -6,7 +10,8 @@ const bot = new dbd.Bot({
     ignoreBots: true,
     ignoreDMs: true,
     ignoreMe: true,
-    reverseReading: true
+    reverseReading: true,
+    database
 });
 
 dbd.Debugger.Events.on('debug', console.log)
