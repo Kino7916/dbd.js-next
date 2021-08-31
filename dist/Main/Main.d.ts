@@ -32,7 +32,7 @@ export interface ActivityOptions {
 }
 declare class Main {
     client: any;
-    database: any;
+    database: Database;
     commands: CommandManager;
     status: StatusManager;
     constructor(clientOptions: ClientOptions);
