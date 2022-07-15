@@ -1,8 +1,8 @@
-declare function InputStream(input: string): StreamMethods;
-declare interface StreamMethods {
-    next: () => string;
-    fallback: (offset: number) => string;
-    peek: (offset: number) => string;
+declare function InputStream(input: string): StreamMethods<string>;
+declare interface StreamMethods<T> {
+    next: () => T;
+    fallback: (offset: number) => T;
+    peek: (offset?: number) => T;
     eof: () => boolean;
     croak: (msg: string) => void;
 }

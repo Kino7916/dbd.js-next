@@ -1,3 +1,6 @@
 import { StreamMethods } from "./InputStream";
-declare function TokenStream(input: StreamMethods): StreamMethods;
+declare function TokenStream(input: StreamMethods<string>): StreamMethods<{
+    type: string;
+    value: string;
+}>;
 export { TokenStream };

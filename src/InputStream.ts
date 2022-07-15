@@ -1,4 +1,4 @@
-function InputStream(input: string): StreamMethods {
+function InputStream(input: string): StreamMethods<string> {
     let pos = 0, line = 1, col = 0;
     return {
         next,
@@ -28,10 +28,10 @@ function InputStream(input: string): StreamMethods {
     }
 }
 
-declare interface StreamMethods {
-    next: () => string;
-    fallback: (offset: number) => string;
-    peek: (offset: number) => string;
+declare interface StreamMethods<T> {
+    next: () => T;
+    fallback: (offset: number) => T;
+    peek: (offset?: number) => T;
     eof: () => boolean;
     croak: (msg: string) => void;
 }
